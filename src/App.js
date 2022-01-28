@@ -7,9 +7,6 @@ import Profile from "./components/Profile/Profile";
 
 const App = ({ state, addPost, updateNewPostText, }) => {
 
-
-
-
   return (
 
     <BrowserRouter BrowserRouter >
@@ -24,18 +21,11 @@ const App = ({ state, addPost, updateNewPostText, }) => {
           </Routes>
         </div>
 
-        <div>
-
-          <div>
-
-          </div>
-
-        </div>
-
-
       </div>
     </BrowserRouter >
   );
 };
 
 export default App;
+
+
