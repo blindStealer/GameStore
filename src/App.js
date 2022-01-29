@@ -16,8 +16,18 @@ const App = ({ state, addPost, updateNewPostText, }) => {
 
         <div className="app-wrapper-content">
           <Routes>
-            <Route path='/dialogs/*' element={<Dialogs dialogsData={state.messagesPage.dialogsData} messagesData={state.messagesPage.messagesData} />} />
-            <Route path='/profile/*' element={<Profile posts={state.profilePage.posts} addPost={addPost} newPostText={state.profilePage.newPostText} updateNewPostText={updateNewPostText} />} />
+            <Route
+              path='/dialogs/*'
+              element={<Dialogs
+                dialogsData={state.messagesPage.dialogsData}
+                messagesData={state.messagesPage.messagesData} />} />
+            <Route
+              path='/profile/*'
+              element={<Profile
+                posts={state.profilePage.posts}
+                addPost={addPost}
+                newPostText={state.profilePage.newPostText}
+                updateNewPostText={updateNewPostText} />} />
           </Routes>
         </div>
 
