@@ -71,32 +71,11 @@ let store = {
 
 
 
-    // addPost() {
-    //     let newPost = {
-    //         id: 5,
-    //         message: this._state.profilePage.newPostText,
-    //         likesCount: 0
-    //     }
-
-    //     this._state.profilePage.posts.push(newPost)
-    //     this._state.profilePage.newPostText = ''
-
-    //     this._callSubscriber(this._state)
-    // },
-
-    // updateNewPostText(newText) {
-
-    //     this._state.profilePage.newPostText = newText
-
-    //     this._callSubscriber(this._state)
-    // },
-
-
     dispatch(action) {
 
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.messagesPage = dialogsReducer(this._state.messagesPage, action)
-        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        profileReducer(this._state.profilePage, action)
+        dialogsReducer(this._state.messagesPage, action)
+        sidebarReducer(this._state.sidebar, action)
 
         this._callSubscriber(this._state)
     }

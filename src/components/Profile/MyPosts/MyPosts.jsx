@@ -19,6 +19,17 @@ const MyPosts = ({ posts, newPostText, dispatch }) => {
     dispatch(updateNewPostTextActionCreator(text));
   };
 
+  let newPostsArray = posts.map((item) => {
+    return (
+      <Post
+        message={item.message}
+        id={item.id}
+        key={item.id}
+        likesCount={item.likesCount}
+      />
+    );
+  });
+
   return (
     <div className={s.postsBlock}>
       <h3> My posts</h3>
@@ -34,11 +45,7 @@ const MyPosts = ({ posts, newPostText, dispatch }) => {
           <button onClick={onAddPost}>Add posts</button>
         </div>
       </div>
-      <div className={s.posts}>
-        {posts.map((item) => (
-          <Post message={item.message} id={item.id} key={item.id} />
-        ))}
-      </div>
+      <div className={s.posts}>{newPostsArray}</div>
     </div>
   );
 };

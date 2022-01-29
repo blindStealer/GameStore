@@ -10,7 +10,7 @@ const profileReducer = (state, action) => {
         let newPost = {
             id: 7,
             message: state.newPostText,
-            likesCount: 0
+            likesCount: 0,
         }
         state.posts.push(newPost)
         state.newPostText = ''
@@ -32,7 +32,8 @@ export const addPostActionCreator = () => ({
 
 
 export const updateNewPostTextActionCreator = (text) => ({
-    type: UPDATE_NEW_POST_TEXT, newText: text
+    type: UPDATE_NEW_POST_TEXT,
+    newText: text
 })
 
 

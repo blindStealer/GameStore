@@ -9,9 +9,7 @@ import {
   sendMessageCreator,
 } from "../../redux/dialogsReducer";
 
-
-const Dialogs = ({ dialogsData, messagesData, newMessageBody }) => {
-  // eslint-disable-next-line react/prop-types
+const Dialogs = ({ dialogsData, messagesData, newMessageBody, dispatch }) => {
   let dialogElements = dialogsData.map((item) => {
     return <DialogItem key={item.id} name={item.name} id={item.id} />;
   });
@@ -21,12 +19,12 @@ const Dialogs = ({ dialogsData, messagesData, newMessageBody }) => {
   });
 
   let onSendMessageClick = () => {
-    store.dispatch(sendMessageCreator());
+    dispatch(sendMessageCreator());
   };
 
   let onNewMessageChange = (e) => {
     let body = e.target.value;
-    store.dispatch(updateNewMessageBodyCreator(body));
+    dispatch(updateNewMessageBodyCreator(body));
   };
 
   return (

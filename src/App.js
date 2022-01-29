@@ -22,7 +22,8 @@ const App = ({ state, dispatch, store }) => {
 
               dialogsData={state.messagesPage.dialogsData}
               messagesData={state.messagesPage.messagesData}
-              newMessageBody={store._state.messagesPage.newMessageBody} />} />
+              newMessageBody={store._state.messagesPage.newMessageBody}
+              dispatch={dispatch} />} />
 
             <Route path='/profile/*' element={<Profile
               posts={state.profilePage.posts}
