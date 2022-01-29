@@ -1,3 +1,14 @@
+import { act } from "react-dom/cjs/react-dom-test-utils.production.min"
+import dialogsReducer from "./dialogsReducer"
+import profileReducer from "./profileReducer"
+import sidebarReducer from "./sidebarReducer"
+
+// const ADD_POST = 'ADD-POST'
+// const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+// const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
+// const SEND_MESSAGE = 'SEND_MESSAGE'
+
+
 
 
 let store = {
@@ -23,9 +34,10 @@ let store = {
                 { id: 1, message: 'hi' },
                 { id: 2, message: 'How is your It kamasutra' },
                 { id: 3, message: 'yo' },
-                { id: 5, message: 'yo' },
-                { id: 6, message: 'yo' },
-                { id: 4, message: 'yo' },
+                { id: 4, message: 'ааа' },
+                { id: 5, message: 'ввв' },
+                { id: 6, message: 'ыыы' },
+
             ],
 
             dialogsData: [
@@ -36,7 +48,11 @@ let store = {
                 { id: 5, name: 'Viktor' },
                 { id: 6, name: 'Valera' },
             ],
+
+            newMessageBody: ''
         },
+
+        sidebar: {}
 
     },
 
@@ -44,35 +60,45 @@ let store = {
         console.log('State is changes')
     },
 
+
     getState() {
         return this._state
     },
 
-
-
-    addPost() {
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0
-        }
-
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ''
-
-        this._callSubscriber(this._state)
-    },
-
-    updateNewPostText(newText) {
-
-        this._state.profilePage.newPostText = newText
-
-        this._callSubscriber(this._state)
-    },
-
-
     subscribe(observer) {
         this._callSubscriber = observer
+    },
+
+
+
+    // addPost() {
+    //     let newPost = {
+    //         id: 5,
+    //         message: this._state.profilePage.newPostText,
+    //         likesCount: 0
+    //     }
+
+    //     this._state.profilePage.posts.push(newPost)
+    //     this._state.profilePage.newPostText = ''
+
+    //     this._callSubscriber(this._state)
+    // },
+
+    // updateNewPostText(newText) {
+
+    //     this._state.profilePage.newPostText = newText
+
+    //     this._callSubscriber(this._state)
+    // },
+
+
+    dispatch(action) {
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.messagesPage = dialogsReducer(this._state.messagesPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+
+        this._callSubscriber(this._state)
     }
 
 }

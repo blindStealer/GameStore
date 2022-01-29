@@ -13,8 +13,8 @@ import "./index.css";
 export let rerenderEntireTree = () => {
     ReactDOM.render(
         <App state={store.getState()}
-            addPost={store.addPost.bind(store)}
-            updateNewPostText={store.updateNewPostText.bind(store)} />,
+            dispatch={store.dispatch.bind(store)}
+            store={store} />,
         document.getElementById("root")
     );
 

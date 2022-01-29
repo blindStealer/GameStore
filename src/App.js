@@ -5,10 +5,12 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 
-const App = ({ state, addPost, updateNewPostText, }) => {
+
+
+
+const App = ({ state, dispatch, store }) => {
 
   return (
-
     <BrowserRouter BrowserRouter >
       <div className="app-wrapper">
         <Header />
@@ -16,18 +18,16 @@ const App = ({ state, addPost, updateNewPostText, }) => {
 
         <div className="app-wrapper-content">
           <Routes>
-            <Route
-              path='/dialogs/*'
-              element={<Dialogs
-                dialogsData={state.messagesPage.dialogsData}
-                messagesData={state.messagesPage.messagesData} />} />
-            <Route
-              path='/profile/*'
-              element={<Profile
-                posts={state.profilePage.posts}
-                addPost={addPost}
-                newPostText={state.profilePage.newPostText}
-                updateNewPostText={updateNewPostText} />} />
+            <Route path='/dialogs/*' element={<Dialogs
+
+              dialogsData={state.messagesPage.dialogsData}
+              messagesData={state.messagesPage.messagesData}
+              newMessageBody={store._state.messagesPage.newMessageBody} />} />
+
+            <Route path='/profile/*' element={<Profile
+              posts={state.profilePage.posts}
+              dispatch={dispatch}
+              newPostText={state.profilePage.newPostText} />} />
           </Routes>
         </div>
 

@@ -3,11 +3,13 @@ import s from './../Dialogs.module.css'
 
 
 
-const DialogItem = (props) => {
+const DialogItem = ({ name, id }) => {
     return (
         <div className={s.dialog + ' ' + s.active}>
-            <NavLink to={'dialogs/1' + props.id}>{props.name} {props.id} </NavLink>
-        </div>
+            <NavLink to={'dialogs/1' + id}>
+                {name}
+            </NavLink>
+        </div >
     )
 
 }

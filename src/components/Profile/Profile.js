@@ -2,15 +2,15 @@ import MyPosts from "./MyPosts/MyPosts";
 import s from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = ({ posts, addPost, newPostText, updateNewPostText }) => {
+const Profile = ({ posts, newPostText, dispatch }) => {
   return (
     <div>
       <ProfileInfo />
       <MyPosts
         posts={posts}
-        addPost={addPost}
+        dispatch={dispatch}
         newPostText={newPostText}
-        updateNewPostText={updateNewPostText} />
+      />
     </div>
   );
 };
