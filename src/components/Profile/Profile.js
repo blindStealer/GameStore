@@ -1,19 +1,15 @@
 import MyPosts from "./MyPosts/MyPosts";
 import s from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
-const Profile = ({ posts, newPostText, dispatch }) => {
+const Profile = ({ store }) => {
   return (
     <div>
       <ProfileInfo />
-      <MyPosts
-        posts={posts}
-        dispatch={dispatch}
-        newPostText={newPostText}
-      />
+      <MyPostsContainer />
     </div>
   );
 };
-
 
 export default Profile;

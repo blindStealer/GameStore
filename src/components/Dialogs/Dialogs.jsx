@@ -9,8 +9,14 @@ import {
   sendMessageCreator,
 } from "../../redux/dialogsReducer";
 
-const Dialogs = ({ dialogsData, messagesData, newMessageBody, dispatch }) => {
-  let dialogElements = dialogsData.map((item) => {
+const Dialogs = ({
+  updateNewMessageBody,
+  SendMessage,
+  messagesData,
+  dialogsData,
+  newMessageBody,
+}) => {
+  const dialogElements = dialogsData.map((item) => {
     return <DialogItem key={item.id} name={item.name} id={item.id} />;
   });
 
@@ -19,12 +25,12 @@ const Dialogs = ({ dialogsData, messagesData, newMessageBody, dispatch }) => {
   });
 
   let onSendMessageClick = () => {
-    dispatch(sendMessageCreator());
+    SendMessage();
   };
 
   let onNewMessageChange = (e) => {
     let body = e.target.value;
-    dispatch(updateNewMessageBodyCreator(body));
+    updateNewMessageBody(body);
   };
 
   return (

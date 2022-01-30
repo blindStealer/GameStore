@@ -7,16 +7,16 @@ import {
   updateNewPostTextActionCreator,
 } from "../../../redux/profileReducer";
 
-const MyPosts = ({ posts, newPostText, dispatch }) => {
+const MyPosts = ({ posts, newPostText, updateNewPostText, addPost }) => {
   let newPostElement = React.createRef();
 
   let onAddPost = () => {
-    dispatch(addPostActionCreator());
+    addPost();
   };
 
   let onPostChange = () => {
     let text = newPostElement.current.value;
-    dispatch(updateNewPostTextActionCreator(text));
+    updateNewPostText(text);
   };
 
   let newPostsArray = posts.map((item) => {
