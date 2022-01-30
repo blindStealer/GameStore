@@ -22,7 +22,7 @@ const App = ({ state, dispatch, store }) => {
                 <Dialogs
                   dialogsData={state.messagesPage.dialogsData}
                   messagesData={state.messagesPage.messagesData}
-                  newMessageBody={store._state.messagesPage.newMessageBody}
+                  newMessageBody={state.messagesPage.newMessageBody}
                   dispatch={dispatch}
                 />
               }
