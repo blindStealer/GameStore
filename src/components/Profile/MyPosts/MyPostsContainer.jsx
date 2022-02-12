@@ -1,4 +1,3 @@
-import Post from "./Post/Post";
 import React from "react";
 
 import {
@@ -8,12 +7,11 @@ import {
 import MyPosts from "./MyPosts";
 import StoreContext from "../../../StoreContext";
 
-const MyPostsContainer = ({ store }) => {
+const MyPostsContainer = () => {
   return (
+
     <StoreContext.Consumer>
       {(store) => {
-        let state = store.getState();
-
         let onAddPost = () => {
           store.dispatch(addPostActionCreator());
         };
@@ -32,6 +30,7 @@ const MyPostsContainer = ({ store }) => {
         );
       }}
     </StoreContext.Consumer>
+
   );
 };
 

@@ -1,9 +1,3 @@
-import { NavLink } from "react-router-dom";
-import s from "./Dialogs.module.css";
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
-import store from "../../redux/store";
-
 import {
   updateNewMessageBodyCreator,
   sendMessageCreator,
@@ -11,8 +5,9 @@ import {
 import Dialogs from "./Dialogs";
 import StoreContext from "../../StoreContext";
 
-const DialogsContainer = ({ store }) => {
+const DialogsContainer = () => {
   return (
+    
     <StoreContext.Consumer>
       {(store) => {
         const messagesData = store.getState().messagesPage.messagesData;
