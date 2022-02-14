@@ -3,24 +3,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import "./index.css";
-import StoreContext from "./StoreContext";
-
-let rerenderEntireTree = () => {
-
-  ReactDOM.render(
-    <StoreContext.Provider value={store}>
-      <App />
-    </StoreContext.Provider>,
-    document.getElementById("root")
-  );
-
-};
+import { Provider } from 'react-redux'
 
 
-rerenderEntireTree();
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
 
 
-store.subscribe(() => {
-
-  rerenderEntireTree(store.getState());
-});

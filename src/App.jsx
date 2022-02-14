@@ -4,8 +4,9 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
-const App = ({ store }) => {
+const App = () => {
   return (
     <BrowserRouter BrowserRouter>
       <div className="app-wrapper">
@@ -15,6 +16,7 @@ const App = ({ store }) => {
           <Routes>
             <Route path="/dialogs/*" element={<DialogsContainer />} />
             <Route path="/profile/*" element={<Profile />} />
+            <Route path="/users/*" element={<UsersContainer />} />
           </Routes>
         </div>
       </div>

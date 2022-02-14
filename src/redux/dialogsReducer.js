@@ -23,17 +23,30 @@ let initialState = {
   newMessageBody: "",
 };
 
-const dialogsReducer = (state = initialState, action) => { 
-  if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-    state.newMessageBody = action.body;
-  } else if (action.type === SEND_MESSAGE) {
-    let body = state.newMessageBody;
-    state.messagesData.push({ id: 7, message: body });
-    state.newMessageBody = "";
-  }
 
-  return state;
-};
+
+const dialogsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case UPDATE_NEW_MESSAGE_BODY:
+      return {
+        ...state,
+        newMessageBody: action.body
+      }
+
+    case SEND_MESSAGE: {
+      let body = state.newMessageBody;
+      return {
+        ...state,
+        messagesData: [...state.messagesData, { id: Date.now(), message: body }],
+        newMessageBody: ''
+      }
+    }
+
+    default:
+      return state
+  }
+}
+
 
 export const updateNewMessageBodyCreator = (text) => ({
   type: UPDATE_NEW_MESSAGE_BODY,
@@ -45,3 +58,29 @@ export const sendMessageCreator = () => ({
 });
 
 export default dialogsReducer;
+
+
+
+
+
+// const dialogsReducer = (state = initialState, action) => {
+
+
+//   if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+//     return {
+//       ...state,
+//       newMessageBody: action.body
+//     }
+
+//   } else if (action.type === SEND_MESSAGE) {
+//     let body = state.newMessageBody;
+//     return {
+//       ...state,
+//       messagesData: [...state.messagesData, { id: Date.now(), message: body }],
+//       newMessageBody: ''
+//     }
+
+//   }
+
+//   return state;
+// };
