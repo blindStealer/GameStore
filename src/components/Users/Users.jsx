@@ -1,49 +1,73 @@
-let Users = ({ users, followToggle, setUsers }) => {
+import axios from 'axios'
+import React from 'react';
+import userPhoto from '../../assets/images/user.png'
+import s from './Users.module.css'
 
-  if(users.length === 0)
+class Users extends React.Component {
 
-    
-    
-    setUsers([
-      { id: 1, photoUrl: 'https://yt3.ggpht.com/VQzovPuSAzlRHw_iLfnRk5Tu_px5z1t7P0CvUOMAftQ7gq0BACCy5Z_pczZicsAooGhNQAEkKw=s900-c-k-c0x00ffffff-no-rj', followed: true, fullName: 'Sasha', status: 'i am a boss too', location: { city: 'Moscow', country: 'Russia' } },
-      { id: 2, photoUrl: 'https://yt3.ggpht.com/VQzovPuSAzlRHw_iLfnRk5Tu_px5z1t7P0CvUOMAftQ7gq0BACCy5Z_pczZicsAooGhNQAEkKw=s900-c-k-c0x00ffffff-no-rj', followed: false, fullName: 'Andrew', status: 'i am a boss too!!!', location: { city: 'Kiev', country: 'Ukraine' } },
-      { id: 3, photoUrl: 'https://yt3.ggpht.com/VQzovPuSAzlRHw_iLfnRk5Tu_px5z1t7P0CvUOMAftQ7gq0BACCy5Z_pczZicsAooGhNQAEkKw=s900-c-k-c0x00ffffff-no-rj', followed: false, fullName: 'Vita', status: 'i am a boss too!!!', location: { city: 'Arkhangel', country: 'Russia' } },
-  ])
+  constructor(props) {
+      super(props)
+    }
+
+
+    componentDidMount() {
+      axios.get('https://social-network.samuraijs.com/api/1.0/users')
+      .then(response => {
+        this.props.setUsers(response.data.items)
+        console.log(response.data.totalCount)
+      })
   
- 
-  return (
-    <div>
-      {users.map((item) => {
-        return (
-          <div key={item.id}>
-            <div>
+    }
+    
+  
+
+
+  render() {
+    return (
+      
+      <div>
+        <div>
+          <span>1</span>
+          <span className={s.selectedPage}>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+        </div>
+        {this.props.users.map((item) => {
+          return (
+            <div key={item.id}>
               <div>
-                <img style={{ height: 100 }} src={item.photoUrl} alt='ava' />
+                <div>
+                  <img style={{ height: 100 }} src={item.photos.small === null ? userPhoto : item.photos.small} alt='ava' />
+                </div>
+                <div>
+                  {item.followed 
+                    ?<button onClick={() => this.props.followToggle(item.id)}>followed</button>
+                    :<button onClick={() => this.props.followToggle(item.id)}>unfollowed</button>
+                  }
+                </div>
               </div>
-              <div>
-                {item.followed 
-                  ?<button onClick={() => followToggle(item.id)}>followed</button>
-                  :<button onClick={() => followToggle(item.id)}>unfollowed</button>
-                }
+  
+              <div className="wrapperContent">
+                <div>
+                  <h3>{item.name}</h3>
+                  <p>{item.status}</p>
+                </div>
+  
+                <div>
+                  <p>{'item.location.city'}</p>
+                  <p>{'item.location.country'}</p>
+                </div>
               </div>
             </div>
+          );
+        })}
+      </div>
+    );
+  }
 
-            <div className="wrapperContent">
-              <div>
-                <h3>{item.fullName}</h3>
-                <p>{item.status}</p>
-              </div>
 
-              <div>
-                <p>{item.location.city}</p>
-                <p>{item.location.country}</p>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-};
+}
+
 
 export default Users;

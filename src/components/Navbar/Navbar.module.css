@@ -4,11 +4,12 @@
   background-color: burlywood;
 }
 
-.item a {
+.item {
   color: white;
   text-decoration: none;
 }
 
-.item a.active {
+.active {
   color: gold;
+  text-decoration: none;
 }
