@@ -1,7 +1,13 @@
 
+import Loader from "../../UI/Loader/Loader";
 import s from "./ProfileInfo.module.css";
 
-const ProfileInfo = () => {
+const ProfileInfo = ({ profile }) => {
+
+  if (!profile) {
+    return <Loader />
+  }
+
   return (
     <div>
       <div>
@@ -12,6 +18,9 @@ const ProfileInfo = () => {
       </div>
 
       <div className={s.descriptionBlock}>
+        <div>
+          <img src={profile.photos.large} alt="" />
+        </div>
         ava + description
       </div>
 
