@@ -1,12 +1,9 @@
 
-import Loader from "../../UI/Loader/Loader";
+import { useEffect } from "react";
 import s from "./ProfileInfo.module.css";
-
 const ProfileInfo = ({ profile }) => {
 
-  if (!profile) {
-    return <Loader />
-  }
+  
 
   return (
     <div>
@@ -19,9 +16,14 @@ const ProfileInfo = ({ profile }) => {
 
       <div className={s.descriptionBlock}>
         <div>
-          <img src={profile.photos.large} alt="" />
+          <img src={profile.photos.large} alt="ava" />
         </div>
-        ava + description
+
+        <div>
+          <span>Описание: </span>
+          {profile.aboutMe === null ? 'У пользователя нет своего описания....' : profile.aboutMe}
+        </div>
+
       </div>
 
     </div>

@@ -31,7 +31,7 @@ const Users = (props) => {
           <div key={item.id}>
             <div>
               <div>
-                <NavLink to="/profile">
+                <NavLink to={`/profile/${item.id}`}>
                   <img
                     style={{ height: 100 }}
                     src={
