@@ -3,6 +3,7 @@ const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT'
 const SET_IS_FETCHING = 'SET_IS_FETCHING'
+
 let initialState = {
     users: [],
     pageSize: 5,
@@ -11,7 +12,6 @@ let initialState = {
     isFetching: false
 
 }
-
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -51,9 +51,6 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 isFetching: action.isFetching
             }
-
-
-
 
         default:
             return state
