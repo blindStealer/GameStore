@@ -2,6 +2,7 @@ import React from "react";
 import userPhoto from "../../assets/images/user.png";
 import s from "./Users.module.css";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 const Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize / 300);
 
@@ -43,12 +44,49 @@ const Users = (props) => {
               </div>
               <div>
                 {item.followed ? (
-                  <button onClick={() => props.followToggle(item.id)}>
-                    followed
+                  <button
+                    onClick={() => {
+                      axios
+                        .delete(
+                          `https://social-network.samuraijs.com/api/1.0/follow/${item.id}`,
+                          {
+                            withCredentials: true,
+                            headers: {
+                              "API-KEY": "51bd7e29-08d6-41be-b59b-00fef99413fe",
+                            },
+                          }
+                        )
+                        .then((response) => {
+                          if (response.data.resultCode === 0) {
+                            props.followToggle(item.id);
+                          }
+                        });
+                    }}
+                  >
+                    unfollowed
                   </button>
                 ) : (
-                  <button onClick={() => props.followToggle(item.id)}>
-                    unfollowed
+                  <button
+                    onClick={() => {
+                      axios
+                        .post(
+                          `https://social-network.samuraijs.com/api/1.0/follow/${item.id}`,
+                          {},
+                          {
+                            withCredentials: true,
+                            headers: {
+                              "API-KEY": "51bd7e29-08d6-41be-b59b-00fef99413fe",
+                            },
+                          }
+                        )
+                        .then((response) => {
+                          if (response.data.resultCode === 0) {
+                            props.followToggle(item.id);
+                          }
+                        });
+                    }}
+                  >
+                    followed
                   </button>
                 )}
               </div>

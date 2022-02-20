@@ -10,54 +10,59 @@ import Users from "./Users";
 import React from "react";
 import axios from "axios";
 import Loader from "../UI/Loader/Loader";
+import { useEffect } from "react";
 
-class UsersContainerAPI extends React.Component {
-  componentDidMount() {
-    this.props.setIsFetching(true);
+const UsersContainerAPI = (props) => {
+  useEffect(() => {
+    props.setIsFetching(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${props.currentPage}&count=${props.pageSize}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((response) => {
-        this.props.setIsFetching(false);
-        this.props.setUsers(response.data.items);
-        this.props.setTotalUserCount(response.data.totalCount);
+        props.setIsFetching(false);
+        props.setUsers(response.data.items);
+        props.setTotalUserCount(response.data.totalCount);
       });
-  }
+  }, []);
 
-  onPageChanged = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
-    this.props.setIsFetching(true);
+  const onPageChanged = (pageNumber) => {
+    props.setCurrentPage(pageNumber);
+    props.setIsFetching(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${props.pageSize}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((response) => {
-        this.props.setIsFetching(false);
-        this.props.setUsers(response.data.items);
+        props.setIsFetching(false);
+        props.setUsers(response.data.items);
       });
   };
 
-  render() {
-    return (
-      <>
-        {this.props.isFetching ? (
-          <Loader />
-        ) : (
-          <Users
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            followToggle={this.props.followToggle}
-            currentPage={this.props.currentPage}
-            selectedPage={this.props.selectedPage}
-            users={this.props.users}
-            onPageChanged={this.onPageChanged}
-          />
-        )}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      {props.isFetching ? (
+        <Loader />
+      ) : (
+        <Users
+          totalUsersCount={props.totalUsersCount}
+          pageSize={props.pageSize}
+          followToggle={props.followToggle}
+          currentPage={props.currentPage}
+          selectedPage={props.selectedPage}
+          users={props.users}
+          onPageChanged={onPageChanged}
+        />
+      )}
+    </>
+  );
+};
 
 let mapStateToProps = (state) => {
   return {
