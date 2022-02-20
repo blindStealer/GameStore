@@ -16,6 +16,7 @@ const App = () => {
           <Routes>
             <Route path="/dialogs/*" element={<DialogsContainer />} />
             <Route path="/profile/:userID" element={<ProfileContainer />} />
+            <Route path="/profile/" element={<ProfileContainer />} />
             <Route path="/users/*" element={<UsersContainer />} />
           </Routes>
         </div>

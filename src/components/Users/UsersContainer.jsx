@@ -8,41 +8,29 @@ import {
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import React from "react";
-import axios from "axios";
 import Loader from "../UI/Loader/Loader";
 import { useEffect } from "react";
+import { usersAPI } from "../../api/Api";
 
 const UsersContainerAPI = (props) => {
   useEffect(() => {
     props.setIsFetching(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${props.currentPage}&count=${props.pageSize}`,
-        {
-          withCredentials: true,
-        }
-      )
-      .then((response) => {
-        props.setIsFetching(false);
-        props.setUsers(response.data.items);
-        props.setTotalUserCount(response.data.totalCount);
-      });
+
+    usersAPI.getUsers(props.currentPage, props.pageSize).then((data) => {
+      props.setIsFetching(false);
+      props.setUsers(data.items);
+      props.setTotalUserCount(data.totalCount);
+    });
   }, []);
 
   const onPageChanged = (pageNumber) => {
     props.setCurrentPage(pageNumber);
     props.setIsFetching(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${props.pageSize}`,
-        {
-          withCredentials: true,
-        }
-      )
-      .then((response) => {
-        props.setIsFetching(false);
-        props.setUsers(response.data.items);
-      });
+
+    usersAPI.getUsers(pageNumber, props.pageSize).then((data) => {
+      props.setIsFetching(false);
+      props.setUsers(data.items);
+    });
   };
 
   return (

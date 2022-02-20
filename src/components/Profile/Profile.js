@@ -10,13 +10,17 @@ import Loader from "../UI/Loader/Loader";
 const Profile = () => {
   let { userID } = useParams()
 
+  if (!userID) {
+    userID = 2
+  }
+
   const [profile, setProfile] = useState(null)
 
   useEffect(() => {
     axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userID}`)
       .then((response) => {
         setProfile(response.data)
-        console.log(response.data)
+
       })
   }, [userID])
 
