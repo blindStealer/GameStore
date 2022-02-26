@@ -1,0 +1,12 @@
+.cart-item {
+  display: flex;
+  width: 100%;
+  padding: 10px 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-item__price {
+  display: flex;
+  min-width: 50px;
+}

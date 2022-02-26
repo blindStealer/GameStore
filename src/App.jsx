@@ -1,21 +1,23 @@
-import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import HomePage from "./pages/home-page/HomePage";
 import Header from "./components/header/Header";
+import { Provider } from "react-redux";
+import store from "./redux/redux";
 
 import "./index.css";
 
 const App = () => {
   return (
-    <div className="App">
+    <Provider store={store}>
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/store" element={<HomePage />} />
-        </Routes>
+        <div className="App">
+          <Header />
+          <Routes>
+            <Route path="/store" element={<HomePage />} />
+          </Routes>
+        </div>
       </BrowserRouter>
-    </div>
+    </Provider>
   );
 };
 
