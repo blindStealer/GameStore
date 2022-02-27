@@ -4,13 +4,9 @@
   width: 320px;
   height: 300px;
   background-color: rgb(36, 37, 41);
-  border-radius: 15px;
   cursor: pointer;
   position: relative;
-}
-
-.game-item {
-  margin-top: 50px;
+  margin-top: 60px;
   margin-right: 70px;
 }
 
@@ -34,4 +30,7 @@
   position: absolute;
   right: 0;
   bottom: -10px;
+}
+
+.game-item:hover {
 }

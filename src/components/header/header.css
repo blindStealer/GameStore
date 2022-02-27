@@ -1,22 +1,25 @@
 .header {
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    
-
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .wrapper {
-    display: flex;
-    
+  display: flex;
 }
 
-.header__store title{
-    color: white;
-    text-decoration: none;
-    font-size: 24px;
-    font-weight: bold;
+.header-store-title {
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  margin: 0 auto;
 
+  border-bottom: 1px solid white;
 }
 
+.header-store-title:hover {
+  color: bisque;
+  border-bottom: 1px solid bisque;
+}

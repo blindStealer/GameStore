@@ -4,7 +4,7 @@ import GameItem from '../../components/game-item/GameItem'
 
 const GAMES = [
   {
-    image: 'game-covers/forza_5.jpeg',
+    image: '/game-covers/forza_5.jpeg',
     title: 'Forza Horizon 5',
     genres: ['Гонки', 'Симулятор', 'Открытый мир'],
     price: 2343,
@@ -13,7 +13,7 @@ const GAMES = [
     description: "Вас ждёт бесконечный калейдоскоп приключений Horizon! Совершайте увлекательные поездки по невероятно красивому и самобытному миру Мексики за рулём величайших автомобилей в истории. Начните своё приключение Horizon уже сегодня, добавив игру в свой список желаний!",
   },
   {
-    image: 'game-covers/battlefield_2042.jpg',
+    image: '/game-covers/battlefield_2042.jpg',
     title: 'Battlefield 2042',
     genres: ['Экшен', 'Шутер', 'Война'],
     video: 'https://www.youtube.com/embed/ASzOzrB-a9E',
@@ -66,6 +66,7 @@ const HomePage = () => {
       {GAMES.map((game) => {
         return <GameItem game={game} key={game.id} />
       })}
+
     </div>
   )
 }

@@ -7,10 +7,14 @@ import { deleteItemFromCart, setItemInCart } from '../../redux/cart/reducer'
 
 
 const GameBuyButton = ({ game }) => {
+
     const dispatch = useDispatch()
     const items = useSelector(state => state.cart.itemsInCart)
 
-    const isItemInCart = items.some(item => item.id === game.id)
+    const isItemInCart = items.some((item) => {
+        return item.id === game.id
+    })
+
 
     const handleClick = (e) => {
         e.stopPropagation()
@@ -21,7 +25,7 @@ const GameBuyButton = ({ game }) => {
 
         }
     }
-
+    
     return (
         <div className='game-buy-button'>
             <span className='game-buy-price'>{game.price} руб </span>
